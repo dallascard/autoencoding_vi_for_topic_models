@@ -7,6 +7,7 @@ from copy import deepcopy
 from time import time
 import matplotlib.pyplot as plt
 import pickle
+
 def xavier_init(fan_in, fan_out, constant=1):
     low = -constant*np.sqrt(6.0/(fan_in + fan_out))
     high = constant*np.sqrt(6.0/(fan_in + fan_out))
@@ -18,6 +19,7 @@ def log_dir_init(fan_in, fan_out,topics=50):
     return tf.log((1.0/topics)*tf.ones([fan_in, fan_out]))
 
 tf.reset_default_graph()
+
 class VAE(object):
     """
     See "Auto-Encoding Variational Bayes" by Kingma and Welling for more details.
