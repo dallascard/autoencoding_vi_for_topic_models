@@ -46,7 +46,9 @@ class VAE(object):
 
         init = tf.initialize_all_variables()
 
-        self.sess = tf.InteractiveSession()
+        config = tf.ConfigProto(intra_op_parallelism_threads=4,
+                                inter_op_parallelism_threads=4)
+        self.sess = tf.InteractiveSession(config=config)
         self.sess.run(init)
 
     def _create_network(self):
