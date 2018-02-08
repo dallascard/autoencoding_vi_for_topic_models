@@ -118,6 +118,14 @@ def print_top_words(beta, feature_names, n_top_words=10):
             for j in beta[i].argsort()[:-n_top_words - 1:-1]]))
     print '---------------End of Topics------------------'
 
+
+def print_docs(model, docs):
+    for doc in docs:
+        doc = doc.astype('float32')
+        z=model.topic_prop(doc)
+        print(z)
+
+
 def calcPerp(model):
     cost=[]
     for doc in docs_te:
@@ -185,6 +193,10 @@ def main(argv):
     print opts
     vae,emb = train(network_architecture, minibatches,m, training_epochs=e,batch_size=batch_size,learning_rate=learning_rate)
     print_top_words(emb, zip(*sorted(vocab.items(), key=lambda x: x[1]))[0])
+    print("Train")
+    print_docs(vae, docs_tr.astype('float32'))
+    print("Test")
+    print_docs(vae, data_te.astype('float32'))
     calcPerp(vae)
 
 if __name__ == "__main__":

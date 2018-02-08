@@ -109,7 +109,6 @@ class VAE(object):
                     tf.matmul(self.layer_do_0, weights['h2']),0.0)))
         return x_reconstr_mean
 
-
     def _create_loss_optimizer(self):
 
         self.x_reconstr_mean+=1e-10
@@ -138,6 +137,7 @@ class VAE(object):
         """
         cost = self.sess.run((self.cost),feed_dict={self.x: np.expand_dims(X, axis=0),self.keep_prob: 1.0})
         return cost
+
     def topic_prop(self, X):
         """heta_ is the topic proportion vector. Apply softmax transformation to it before use.
         """
