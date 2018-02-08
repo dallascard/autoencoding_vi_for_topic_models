@@ -119,7 +119,7 @@ def print_top_words(beta, feature_names, n_top_words=10):
     print '---------------End of Topics------------------'
 
 
-def print_docs(model, docs, n=100):
+def print_docs(model, docs, n=20):
     for doc_i, doc in enumerate(docs):
         if doc_i < n:
             doc = doc.astype('float32')

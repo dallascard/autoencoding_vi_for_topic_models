@@ -64,7 +64,7 @@ class VAE(object):
         self.sigma = tf.exp(self.z_log_sigma_sq)
 
         self.x_reconstr_mean = \
-            self._generator_network(self.z,self.network_weights["weights_gener"])
+            self._generator_network(self.z, self.network_weights["weights_gener"])
 
         print self.x_reconstr_mean
 
@@ -136,11 +136,11 @@ class VAE(object):
     def test(self, X):
         """Test the model and return the lowerbound on the log-likelihood.
         """
-        cost = self.sess.run((self.cost),feed_dict={self.x: np.expand_dims(X, axis=0),self.keep_prob: 1.0})
+        cost = self.sess.run((self.cost), feed_dict={self.x: np.expand_dims(X, axis=0),self.keep_prob: 1.0})
         return cost
 
     def topic_prop(self, X):
         """heta_ is the topic proportion vector. Apply softmax transformation to it before use.
         """
-        theta_ = self.sess.run((self.p_mean),feed_dict={self.x: np.expand_dims(X, axis=0),self.keep_prob: 1.0})
+        theta_ = self.sess.run((self.p_mean), feed_dict={self.x: np.expand_dims(X, axis=0),self.keep_prob: 1.0})
         return theta_

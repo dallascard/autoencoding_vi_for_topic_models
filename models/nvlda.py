@@ -114,7 +114,6 @@ class VAE(object):
 
         self.cost = tf.reduce_mean(reconstr_loss) + tf.reduce_mean(latent_loss) # average over batch
 
-
         self.optimizer = \
             tf.train.AdamOptimizer(learning_rate=self.learning_rate,beta1=0.99).minimize(self.cost)
 
@@ -123,11 +122,11 @@ class VAE(object):
         return cost,emb
 
     def test(self, X):
-        cost = self.sess.run((self.cost),
-                                        feed_dict={self.x: np.expand_dims(X, axis=0),self.keep_prob: 1.0})
+        cost = self.sess.run((self.cost), feed_dict={self.x: np.expand_dims(X, axis=0),self.keep_prob: 1.0})
         return cost
+
     def topic_prop(self, X):
         """heta_ is the topic proportion vector. Apply softmax transformation to it before use.
         """
-        theta_ = self.sess.run((self.z),feed_dict={self.x: np.expand_dims(X, axis=0),self.keep_prob: 1.0})
+        theta_ = self.sess.run((self.z), feed_dict={self.x: np.expand_dims(X, axis=0),self.keep_prob: 1.0})
         return theta_
