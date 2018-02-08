@@ -51,7 +51,7 @@ class VAE(object):
 
     def _create_network(self):
         self.network_weights = self._initialize_weights(**self.network_architecture)
-        self.z_mean,self.z_log_sigma_sq = \
+        self.z_mean, self.z_log_sigma_sq = \
             self._recognition_network(self.network_weights["weights_recog"],
                                       self.network_weights["biases_recog"])
 
@@ -60,6 +60,7 @@ class VAE(object):
                                dtype=tf.float32)
         self.z = tf.add(self.z_mean,
                         tf.multiply(tf.sqrt(tf.exp(self.z_log_sigma_sq)), eps))
+        self.p_mean = tf.nn.softmax(self.z_mean)
         self.sigma = tf.exp(self.z_log_sigma_sq)
 
         self.x_reconstr_mean = \
@@ -141,5 +142,5 @@ class VAE(object):
     def topic_prop(self, X):
         """heta_ is the topic proportion vector. Apply softmax transformation to it before use.
         """
-        theta_ = self.sess.run((self.z),feed_dict={self.x: np.expand_dims(X, axis=0),self.keep_prob: 1.0})
+        theta_ = self.sess.run((self.p_mean),feed_dict={self.x: np.expand_dims(X, axis=0),self.keep_prob: 1.0})
         return theta_
