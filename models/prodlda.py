@@ -142,5 +142,5 @@ class VAE(object):
     def topic_prop(self, X):
         """heta_ is the topic proportion vector. Apply softmax transformation to it before use.
         """
-        theta_ = self.sess.run((self.p_mean), feed_dict={self.x: np.expand_dims(X, axis=0),self.keep_prob: 1.0})
+        theta_ = self.sess.run((self.z_mean), feed_dict={self.x: np.expand_dims(X, axis=0),self.keep_prob: 1.0})
         return theta_
