@@ -124,6 +124,7 @@ def print_docs(model, docs, n=20):
         if doc_i < n:
             doc = doc.astype('float32')
             z=model.topic_prop(doc)
+            print(z)
             theta = np.exp(z) / np.sum(np.exp(z))
             print(theta)
 
