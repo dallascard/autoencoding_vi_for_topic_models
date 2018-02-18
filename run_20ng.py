@@ -154,7 +154,7 @@ def train(network_architecture, minibatches, type='prodlda',learning_rate=0.001,
                   "cost=", "{:.9f}".format(avg_cost)
     return vae,emb
 
-def print_top_words(beta, feature_names, n_top_words=10):
+def print_top_words(beta, feature_names, n_top_words=20):
     print '---------------Printing the Topics------------------'
     for i in range(len(beta)):
         print(" ".join([feature_names[j]
