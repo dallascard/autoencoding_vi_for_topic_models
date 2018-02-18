@@ -42,12 +42,12 @@ def load_data(input_dir, input_prefix, log_file, vocab=None):
     X = np.array(temp, dtype='float32')
     if vocab is None:
         vocab = fh.read_json(os.path.join(input_dir, input_prefix + '.vocab.json'))
-    lists_of_indices = fh.read_json(os.path.join(input_dir, input_prefix + '.indices.json'))
-    index_arrays = [np.array(l, dtype='int32') for l in lists_of_indices]
+    #lists_of_indices = fh.read_json(os.path.join(input_dir, input_prefix + '.indices.json'))
+    #index_arrays = [np.array(l, dtype='int32') for l in lists_of_indices]
     n_items, vocab_size = X.shape
-    print(n_items, len(index_arrays))
+    #print(n_items, len(index_arrays))
     assert vocab_size == len(vocab)
-    assert n_items == len(index_arrays)
+    #assert n_items == len(index_arrays)
     print(X[0, :])
 
     label_file = os.path.join(input_dir, input_prefix + '.labels.npz')
@@ -65,11 +65,11 @@ def load_data(input_dir, input_prefix, log_file, vocab=None):
     order.reverse()
     print("Most common words: ", ' '.join([vocab[i] for i in order[:10]]))
 
-    return X, vocab, index_arrays, labels
+    return X, vocab, labels
 
-data_tr, vocab, index_arrays, labels = load_data('../../projects/GNTM/data/imdb50k_5000', 'train', 'log.txt')
+data_tr, vocab, labels = load_data('../../projects/GNTM/data/imdb50k_5000', 'train', 'log.txt')
 
-data_te, _, test_index_arrays, test_labels = load_data('../../projects/GNTM/data/imdb50k_5000', 'test', 'log.txt', vocab)
+data_te, _, test_labels = load_data('../../projects/GNTM/data/imdb50k_5000', 'test', 'log.txt', vocab)
 
 vocab = dict(zip(vocab, range(len(vocab))))
 
