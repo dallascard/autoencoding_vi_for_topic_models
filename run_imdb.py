@@ -67,9 +67,9 @@ def load_data(input_dir, input_prefix, log_file, vocab=None):
 
     return X, vocab, index_arrays, labels
 
-data_tr, vocab, index_arrays, labels = load_data('../../projects/GNTM/data/imdb_5000', 'train', 'log.txt')
+data_tr, vocab, index_arrays, labels = load_data('../../projects/GNTM/data/imdb50k_5000', 'train', 'log.txt')
 
-data_te, _, test_index_arrays, test_labels = load_data('../../projects/GNTM/data/imdb_5000', 'test', 'log.txt', vocab)
+data_te, _, test_index_arrays, test_labels = load_data('../../projects/GNTM/data/imdb50k_5000', 'test', 'log.txt', vocab)
 
 vocab = dict(zip(vocab, range(len(vocab))))
 
