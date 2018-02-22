@@ -78,7 +78,7 @@ class VAE(object):
             'h1': tf.get_variable('h1',[n_input, n_hidden_recog_1]),
             #'h2': tf.get_variable('h2',[n_hidden_recog_1, n_hidden_recog_2]),
             'out_mean': tf.get_variable('out_mean',[n_hidden_recog_1, n_z]),
-            'out_log_sigma': tf.get_variable('out_log_sigma',[n_hidden_recog_2, n_z])}
+            'out_log_sigma': tf.get_variable('out_log_sigma',[n_hidden_recog_1, n_z])}
         all_weights['biases_recog'] = {
             #'b1': tf.Variable(tf.zeros([n_hidden_recog_1], dtype=tf.float32)),
             #'b2': tf.Variable(tf.zeros([n_hidden_recog_2], dtype=tf.float32)),
