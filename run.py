@@ -74,10 +74,10 @@ def create_minibatch(data):
         yield data[ixs]
 
 
-def train(network_architecture, minibatches, type='prodlda',learning_rate=0.001,
+def train(network_architecture, minibatches, type, learning_rate=0.001,
           batch_size=200, training_epochs=100, display_step=5):
     tf.reset_default_graph()
-    print(type)
+    print("type = ", type)
     vae=''
     if type=='prodlda':
         vae = prodlda.VAE(network_architecture,
