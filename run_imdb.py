@@ -93,7 +93,7 @@ network_architecture = \
 
 
 
-def make_network(layer1=100,layer2=100,num_topics=50,bs=200,eta=0.002):
+def make_network(layer1=300,layer2=100,num_topics=50,bs=200,eta=0.002):
     tf.reset_default_graph()
     network_architecture = \
         dict(n_hidden_recog_1=layer1, # 1st layer encoder neurons
