@@ -10,7 +10,7 @@ from time import time
 import matplotlib.pyplot as plt
 import pickle
 import sys, getopt
-from models import prodlda, nvlda
+from models import prodlda, nvlda, prodlda2
 '''-----------Data--------------'''
 def onehot(data, min_length):
     return np.bincount(data, minlength=min_length)
@@ -86,6 +86,11 @@ def train(network_architecture, minibatches, type='prodlda',learning_rate=0.001,
         vae = nvlda.VAE(network_architecture,
                                      learning_rate=learning_rate,
                                      batch_size=batch_size)
+    elif type=='prodlda2':
+        vae = prodlda2.VAE(network_architecture,
+                        learning_rate=learning_rate,
+                        batch_size=batch_size)
+
     emb=0
     # Training cycle
     for epoch in range(training_epochs):
@@ -193,7 +198,7 @@ def main(argv):
     network_architecture,batch_size,learning_rate=make_network(f,s,t,b,r)
     print network_architecture
     print opts
-    vae,emb = train(network_architecture, minibatches,m, training_epochs=e,batch_size=batch_size,learning_rate=learning_rate)
+    vae,emb = train(network_architecture, minibatches, m, training_epochs=e,batch_size=batch_size,learning_rate=learning_rate)
     print_top_words(emb, zip(*sorted(vocab.items(), key=lambda x: x[1]))[0])
     print("Train")
     print_docs(vae, docs_tr.astype('float32'))
