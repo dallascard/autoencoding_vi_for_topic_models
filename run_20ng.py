@@ -10,7 +10,7 @@ from time import time
 import matplotlib.pyplot as plt
 import pickle
 import sys, getopt
-from models import prodlda, nvlda
+from models import prodlda, nvlda, prodlda2
 
 import file_handling as fh
 
@@ -123,6 +123,10 @@ def train(network_architecture, minibatches, type='prodlda',learning_rate=0.001,
     vae=''
     if type=='prodlda':
         vae = prodlda.VAE(network_architecture,
+                          learning_rate=learning_rate,
+                          batch_size=batch_size)
+    if type=='prodlda2':
+        vae = prodlda2.VAE(network_architecture,
                           learning_rate=learning_rate,
                           batch_size=batch_size)
     elif type=='nvlda':
